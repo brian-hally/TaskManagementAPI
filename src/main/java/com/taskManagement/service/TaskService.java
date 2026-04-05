@@ -63,10 +63,10 @@ public class TaskService {
 
     /**
      * Greedy algorithm to select tasks that fit within available time.
-     * Strategy:
-     * 1. Filter tasks with due dates and estimated durations
-     * 2. Sort by due date (earliest first)
-     * 3. Select tasks that fit within available time using a greedy approach
+     * 1. Filter tasks with due dates and estimated durations.
+     * 2. Sort by due date (earliest first).
+     * 3. Select tasks that fit within available time using a greedy approach.
+     * 4. Prioritize tasks with earlier due dates.
      */
     @Transactional(readOnly = true)
     public ExecutionPlanResponse generateExecutionPlan(Integer availableTimeMinutes) {

@@ -31,6 +31,7 @@ mvn spring-boot:run
 - Running the API as a springboot configuration locally by using `mvn spring-boot:run` or './mvnw spring-boot:run' preferably.
 - Once the application will start on `http://localhost:8181` as that is the port I have set in the application.properties file.
 - From there you can test the API using a REST client, I recommend Postman.
+- In Postman, you will have to add basic authentication with the username and password you have set in the application.properties file.
 - Once you have added a task, you will be able to test the other endpoints as there will be data in the DB.
 - If you re-run the application, the data will not be persisted with a H2 database.
 
