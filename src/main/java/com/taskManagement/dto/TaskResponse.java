@@ -1,6 +1,7 @@
 package com.taskManagement.dto;
 
 import com.taskManagement.entity.Task;
+import com.taskManagement.enums.TaskStatus;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -13,7 +14,7 @@ public class TaskResponse {
     private Long id;
     private String title;
     private String description;
-    private String status;
+    private TaskStatus status;
     private String assignee;
     private String createdBy;
     private LocalDateTime createdAt;

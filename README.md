@@ -1,19 +1,19 @@
 # Task Management API 
 
-# Project Overview
+## Project Overview:
 A simple Java Enterprise web application that provides a RESTful API for managing tasks with prioritization capabilities.
 
-### Prerequisites
-- Java 11
+### Prerequisites:
+- Java 21
 - Maven 3.6.3 or higher
 - Git
 - Postman (Optional)
 
 
-## How to Run
+### How to Run:
 These commands will build the project and run it locally. They can be run using command prompt or any other shell, usually from your IDE terminal.
 
-### Option 1: Using Maven Wrapper (Recommended as it doesn't need Maven installed on your machine)
+### Option 1: Using Maven Wrapper: (Recommended as it doesn't need Maven installed on your machine)
 
 ```bash
 ./mvnw clean install
@@ -27,23 +27,40 @@ mvn clean install
 mvn spring-boot:run
 ```
 
-###  Testing the API
+###  Testing the API:
 - Running the API as a springboot configuration locally by using `mvn spring-boot:run` or './mvnw spring-boot:run' preferably.
 - Once the application will start on `http://localhost:8181` as that is the port I have set in the application.properties file.
 - From there you can test the API using a REST client, I recommend Postman.
-- In Postman, you will have to add basic authentication with the username and password you have set in the application.properties file.
-- Once you have added a task, you will be able to test the other endpoints as there will be data in the DB.
-- If you re-run the application, the data will not be persisted with a H2 database.
+- In Postman, you will have to add basic authentication with the username and password below.
+- Once you have created a task, you will be able to test the other endpoints as there will be data in the DB.
 
+### API Endpoints:
+- GET /tasks: Retrieve all tasks.
+- POST /tasks: Create a new task.
+- GET /tasks/{id}: Retrieve a task by ID.
+- PUT /tasks/{id}: Update a task by ID.
+- DELETE /tasks/{id}: Delete a task by ID.
+
+### Authentication:
+- API uses Basic Authentication.
+- Username: `admin`
+- Password: `password123`
+
+### Database:
+- H2 In-memory database is used for simplicity.
+- Data is lost when the application stops (does not persist data).
+
+### Unit testing: 
+- Run the unit tests using `./mvnw test` or `mvn test`
+- Unit tests are very basic and only cover fifty percent of the service layer at present. This would have to be much more extensive to test the entire application before production.
 
 ### Trade-offs:
 - **Pros**: Simple, fast, easy to understand and extend while ensuring urgent tasks are prioritized. 
-- **Cons**: Does not guarantee an optimal solution (may not maximize the number of tasks or use all available time) because it is a greedy algorithm.
+- **Cons**: Does not guarantee an optimal solution (may not maximize the number of tasks or use all available time) because it is a greedy algorithm. Does not make the best use of all available time.
 
-
-## Assumptions
+### Assumptions:
 1. **Time-based priority**: Tasks with earlier due dates are more important.
 2. **In-memory database**: Data is lost when the application stops (suitable for demo/testing). 
-3. **No authentication**: API is publicly accessible, could be enhanced with something like KeyCloak.
+3. **Basic authentication**: API is accessible through basic authentication, could be enhanced with something like Auth 2.0/Keycloak.
 4. **Simple greedy approach**: Very Basic greedy algorithm, could be more complex but suits requirements.
 5. **Validation**: Basic validation ensures title, status, assignee, created by and reasonable time values.

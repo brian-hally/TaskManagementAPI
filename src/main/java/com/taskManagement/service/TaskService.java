@@ -62,23 +62,21 @@ public class TaskService {
     }
 
     /**
-     * Greedy algorithm to select tasks that fit within available time.
+     * Greedy algorithm to select tasks that fit within available time parameter.
      * 1. Filter tasks with due dates and estimated durations.
      * 2. Sort by due date (earliest first).
-     * 3. Select tasks that fit within available time using a greedy approach.
+     * 3. Select tasks that fit within available time using a greedy approach which just takes the first task that fits.
      * 4. Prioritize tasks with earlier due dates.
      */
     @Transactional(readOnly = true)
     public ExecutionPlanResponse generateExecutionPlan(Integer availableTimeMinutes) {
         List<Task> allTasks = taskRepository.findAll();
 
-        // Filter tasks that have both due date and estimated duration
         List<Task> eligibleTasks = allTasks.stream()
                 .filter(task -> task.getDueDate() != null && task.getEstimatedDurationMinutes() != null)
                 .sorted(Comparator.comparing(Task::getDueDate))
                 .toList();
 
-        // Greedy selection
         List<Task> selectedTasks = new ArrayList<>();
         int totalDuration = 0;
 

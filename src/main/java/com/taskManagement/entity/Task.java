@@ -1,6 +1,7 @@
 package com.taskManagement.entity;
 
 import com.taskManagement.dto.TaskRequest;
+import com.taskManagement.enums.TaskStatus;
 import lombok.*;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
@@ -23,7 +24,8 @@ import java.time.LocalDateTime;
         private String description;
 
         @Column(nullable = false)
-        private String status;
+        @Enumerated(EnumType.STRING)
+        private TaskStatus status;
 
         @Column(nullable = false)
         private String assignee;
